@@ -54,6 +54,14 @@ php artisan key:generate
 php artisan migrate:fresh --seed
 ```
 
+4.1. File upload setup
+
+Create the storage symlink so uploaded files (attachments) are publicly accessible:
+
+```bash
+php artisan storage:link
+```
+
 5. Start the development server
 
 ```bash

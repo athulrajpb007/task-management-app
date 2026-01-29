@@ -33,7 +33,7 @@ class ProjectController extends Controller
             'name' => 'required|max:255',
             'description' => 'nullable',
             'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'end_date' => 'required|date|after_or_equal:start_date',
         ]);
 
         Project::create($data);
@@ -68,7 +68,7 @@ class ProjectController extends Controller
             'name' => 'required|max:255',
             'description' => 'nullable',
             'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'end_date' => 'required|date|after_or_equal:start_date',
         ]);
 
         $project->update($data);

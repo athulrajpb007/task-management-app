@@ -3,6 +3,7 @@
     <div>
         <label class="block text-sm font-medium">Project</label>
         <select name="project_id" class="w-full border rounded p-2">
+            <option value="">-- Select project --</option>
             @foreach($projects as $project)
                 <option value="{{ $project->id }}"
                     {{ old('project_id', $task->project_id ?? '') == $project->id ? 'selected' : '' }}>
@@ -10,6 +11,9 @@
                 </option>
             @endforeach
         </select>
+        @error('project_id')
+            <p class="mt-1 text-red-600 text-sm">{{ $message }}</p>
+        @enderror
     </div>
 
     <div>
@@ -17,15 +21,19 @@
         <input name="title"
                value="{{ old('title', $task->title ?? '') }}"
                class="w-full border rounded p-2"
-               required maxlength="255">
-        <p class="mt-1 text-red-600 text-sm" data-error-for="title" style="display:none"></p>
+               maxlength="255">
+        @error('title')
+            <p class="mt-1 text-red-600 text-sm">{{ $message }}</p>
+        @enderror
     </div>
 
     <div>
         <label class="block text-sm font-medium">Description</label>
         <textarea name="description"
                   class="w-full border rounded p-2" maxlength="2000">{{ old('description', $task->description ?? '') }}</textarea>
-        <p class="mt-1 text-red-600 text-sm" data-error-for="description" style="display:none"></p>
+        @error('description')
+            <p class="mt-1 text-red-600 text-sm">{{ $message }}</p>
+        @enderror
     </div>
 
     <div>
@@ -34,7 +42,9 @@
                value="{{ old('assigned_to', $task->assigned_to ?? '') }}"
                class="w-full border rounded p-2"
                maxlength="100">
-        <p class="mt-1 text-red-600 text-sm" data-error-for="assigned_to" style="display:none"></p>
+        @error('assigned_to')
+            <p class="mt-1 text-red-600 text-sm">{{ $message }}</p>
+        @enderror
     </div>
 
     <div>
@@ -54,11 +64,17 @@
                 </option>
             @endforeach
         </select>
+        @error('status')
+            <p class="mt-1 text-red-600 text-sm">{{ $message }}</p>
+        @enderror
     </div>
 
     <div>
         <label class="block text-sm font-medium">Attachment</label>
         <input type="file" name="attachment" class="w-full border rounded p-2">
+        @error('attachment')
+            <p class="mt-1 text-red-600 text-sm">{{ $message }}</p>
+        @enderror
     </div>
 
     <div>
@@ -66,7 +82,11 @@
         <input type="date"
                name="due_date"
                value="{{ old('due_date', $task->due_date ?? '') }}"
-               class="w-full border rounded p-2">
+               class="w-full border rounded p-2"
+               >
+        @error('due_date')
+            <p class="mt-1 text-red-600 text-sm">{{ $message }}</p>
+        @enderror
     </div>
 
 </div>
